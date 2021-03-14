@@ -5,14 +5,28 @@ import com.company.classes.AbstractClasses.Name;
 import com.company.interfaces.Sayer;
 
 public class Dog extends Animal {
-    private int health;
+    public class hp{
+        private int hp;
+
+        public int getHp() {
+            return hp;
+        }
+
+        public void setHp(int hp) {
+            this.hp = hp;
+        }
+        public hp(int hp){
+            this.hp = hp;
+        }
+    }
+    private hp health;
 
     public int getHealth() {
-        return health;
+        return health.getHp();
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health.setHp(health);
         say("Собака "+ name + " стала здоровее");
     }
 
@@ -23,7 +37,7 @@ public class Dog extends Animal {
 
     public Dog(String name, int health) {
         this.name = name;
-        this.health = health;
+        this.health = new hp(health);
     }
 
     public String getName() {

@@ -7,6 +7,11 @@ import com.company.interfaces.Sayer;
 import java.io.IOException;
 
 public class Neznayka extends Name {
+    private static class doctor{
+        public static void naim(String name,String name1){
+            System.out.println(name1 + " нанял доктора для " + name);
+        }
+    }
 
     private boolean isMoney = false;
     private boolean isEat = false;
@@ -41,7 +46,7 @@ public class Neznayka extends Name {
 
     public void setEat(boolean eat, String name) {
         isEat = eat;
-        say(name + " кормит " + name);
+        say(this.name + " кормит " + name);
     }
     public void Wait() throws waitException {
         try{
@@ -56,12 +61,14 @@ public class Neznayka extends Name {
     }
 
     public static void say(String text) {
-        Sayer sayer = new Sayer() {// мы создали  обьект(как обьект класса) но так как это интерфейс, то он требует с нас его  реализации
+        class sayer implements Sayer{
+
             @Override
             public void say(String text) {
                 System.out.println(text);
             }
-        };
+        }
+        sayer sayer = new sayer();
         sayer.say(text);
     }
     public void oslyshals(String name){
@@ -86,7 +93,8 @@ public class Neznayka extends Name {
     }
     public void pay(String who, String name){
         isMoney = false;
-        say("незнайка оплатил " + who + " для " + name);
+        say("Незнайка оплатил " + who + " для " + name);
+        doctor.naim(who, "Незнайка");
     }
     public void see(String name, String name1){
         say(this.name + " смотрит " + name + " с " + name1);
